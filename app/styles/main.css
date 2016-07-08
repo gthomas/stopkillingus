@@ -20,9 +20,25 @@ will be correctly compiled during `gulp serve` and `gulp`
  */
 
 html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  background: #F78C58 !important;
+  font-family: 'Helvetica', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 17px;
   margin: 0;
   padding: 0;
+}
+.mdl-cell {
+  margin: 3px;
+}
+
+.mdl-grid {
+  padding: 0px;
+}
+
+.spacer {
+    height: 20vh;
 }
 .mdl-demo .mdl-layout__header-row {
   padding-left: 40px;
