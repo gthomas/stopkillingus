@@ -73,6 +73,37 @@
   }
 
   // Your custom JavaScript goes here
+  var names = [
+      { name: "PHILANDO CASTILE", image: ""},
+      { name: "ALTON STERLING", image: ""},
+      { name: "freddie gray", image: ""},
+      { name: "eric garner", image: ""},
+      { name: "sandra bland", image: ""},
+      { name: "brandon jones", image: ""},
+      { name: "tamir rice", image: ""},
+      { name: "john crawford", image: ""},
+      { name: "jonathan ferrell", image: ""},
+      { name: "sean bell", image: ""},
+      { name: "amadou diallo", image: ""},
+      { name: "prince jones", image: ""},
+      { name: "oscar grant", image: ""},
+      { name: "eric harris", image: ""},
+      { name: "walter scott", image: ""},
+      { name: "laquan mcdonald", image: ""},
+      { name: "terrence d. walker", image: ""},
+      { name: "mike brown", image: ""},
+      { name: "trayvon martin", image: ""},
+      { name: "akai gurley", image: ""},
+      { name: "dante parker", image: ""},
+      { name: "jerame reid", image: ""},
+      { name: "kimani gray", image: ""},
+      { name: "phillip white", image: ""},
+      { name: "yvette smith", image: ""},
+      { name: "tyisha miller", image: ""},
+      { name: "rumain brisbon", image: ""}
+  ];
+
+  var content = $("#content");
 
 
 })();
