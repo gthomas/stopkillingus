@@ -74,36 +74,64 @@
 
   // Your custom JavaScript goes here
   var names = [
-      { name: "PHILANDO CASTILE", image: ""},
-      { name: "ALTON STERLING", image: ""},
-      { name: "freddie gray", image: ""},
-      { name: "eric garner", image: ""},
-      { name: "sandra bland", image: ""},
-      { name: "brandon jones", image: ""},
-      { name: "tamir rice", image: ""},
-      { name: "john crawford", image: ""},
-      { name: "jonathan ferrell", image: ""},
-      { name: "sean bell", image: ""},
-      { name: "amadou diallo", image: ""},
-      { name: "prince jones", image: ""},
-      { name: "oscar grant", image: ""},
-      { name: "eric harris", image: ""},
-      { name: "walter scott", image: ""},
-      { name: "laquan mcdonald", image: ""},
-      { name: "terrence d. walker", image: ""},
-      { name: "mike brown", image: ""},
-      { name: "trayvon martin", image: ""},
-      { name: "akai gurley", image: ""},
-      { name: "dante parker", image: ""},
-      { name: "jerame reid", image: ""},
-      { name: "kimani gray", image: ""},
-      { name: "phillip white", image: ""},
-      { name: "yvette smith", image: ""},
-      { name: "tyisha miller", image: ""},
-      { name: "rumain brisbon", image: ""}
+    "philando_castile",
+    "alton_sterling",
+    "freddie_gray",
+    "eric_garner",
+    "sandra_bland",
+    "brandon_jones",
+    "tamir_rice",
+    "john_crawford",
+    "jonathan_ferrell",
+    "sean_bell",
+    "amadou_diallo",
+    "prince_jones",
+    "oscar_grant",
+    "eric_harris",
+    "walter_scott",
+    "laquan_mcdonald",
+    "terrence_d._walker",
+    "mike_brown",
+    "trayvon_martin",
+    "akai_gurley",
+    "dante_parker",
+    "jerame_reid",
+    "kimani_gray",
+    "phillip_white",
+    "yvette_smith",
+    "tyisha_miller",
+    "rumain_brisbon",
   ];
 
   var content = $("#content");
+  for (var i=0; i < names.length; i++) {
+    var name = names[i];
+    var name_html = '<span id='+name+' class="mdl-victim-link" data-image-visible="false">' +
+          name.replace(/_/g, ' ') + '</span>';
+
+    var image_path = "images/victims/" + name + '.jpg';
+    var image_html = '<img id="'+name+'_image" class="mdl-image-hidden" src=' +
+          image_path + '></img>';
+
+    var div_html = '<div class="mdl-grid"><div class="mdl-cell mdl-cell--1-col"></div>' +
+          '<div class="mdl-cell mdl-cell--8-col">hands up, hands up, then the cops shot ' +
+          name_html + '</div><div clss="mdl-cell mdl-cell--1-col"></div>' + image_html + '</div>';
+
+    content.append(div_html)
+  }
+
+  $('.mdl-victim-link').on('click', function() {
+    var image = $('#' + this.id + '_image')
+    if (image.is(':hidden')) {
+      var audio = new Audio('media/shot.mp3')
+      audio.play();
+      image.removeClass('mdl-image-hidden')
+      setTimeout(function() {
+        image.addClass('mdl-image-hidden')
+      }, 3000)
+    }
+  })
+
 
 
 })();
