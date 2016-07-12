@@ -29,6 +29,10 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+#content {
+    padding: 0 0 120px 0;
+}
 .mdl-cell {
   margin: 3px;
 }
@@ -235,4 +239,15 @@ html, body {
 .mdl-victim-link {
     color: white;
     cursor: pointer;
+}
+
+footer {
+    color: black;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.mdl-mini-footer {
+    background-color: transparent;
 }
