@@ -233,6 +233,24 @@ html, body {
 }
 
 .mdl-victim-link {
+    color: black;
+    cursor: pointer;
+}
+
+.mdl-victim-link:hover {
     color: white;
     cursor: pointer;
 }
+
+.victim-image-wrap {
+    position: absolute;
+    left: 275px;
+    z-index: 999999;
+}
+
+.victim-image {
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
+}
+
