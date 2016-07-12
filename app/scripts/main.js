@@ -115,7 +115,7 @@
 
     var div_html = '<div class="mdl-grid"><div class="mdl-cell mdl-cell--1-col"></div>' +
           '<div class="mdl-cell mdl-cell--8-col">hands up, hands up, then the cops shot ' +
-          name_html + '</div><div clss="mdl-cell mdl-cell--1-col"></div>' + image_html + '</div>';
+          name_html + '</div><div class="mdl-cell mdl-cell--1-col"></div>' + image_html + '</div>';
 
     content.append(div_html)
   }
