@@ -104,34 +104,41 @@
   ];
 
   var content = $("#content");
+  var victim_active = false;
   for (var i=0; i < names.length; i++) {
     var name = names[i];
     var name_html = '<span id='+name+' class="mdl-victim-link" data-image-visible="false">' +
           name.replace(/_/g, ' ') + '</span>';
 
-    var image_path = "images/victims/" + name + '.jpg';
-    var image_html = '<img id="'+name+'_image" class="mdl-image-hidden" src=' +
-          image_path + '></img>';
+    var image_html = '<img class="victim-image" src="images/victims/' + name + '.jpg"></img>';
 
-    var div_html = '<div class="mdl-grid"><div class="mdl-cell mdl-cell--1-col"></div>' +
-          '<div class="mdl-cell mdl-cell--8-col">hands up, hands up, then the cops shot ' +
-          name_html + '</div><div class="mdl-cell mdl-cell--1-col"></div>' + image_html + '</div>';
+    var div_html = '<div class="mdl-grid">' +
+          '<div class="mdl-cell mdl-cell--1-col"></div>' +
+          '<div class="mdl-cell mdl-cell--8-col">hands up, hands up, then the cops shot ' + name_html + '</div>' +
+          '</div>' +
+          '<div id="'+name+'_image" class="mdl-grid mdl-image-hidden victim-image-wrap">' +
+          '<div class="mdl-cell mdl-cell--4-col"></div>' + image_html + '</div>';
 
     content.append(div_html)
   }
 
-  $('.mdl-victim-link').on('click', function() {
-    var image = $('#' + this.id + '_image')
-    if (image.is(':hidden')) {
-      var audio = new Audio('media/shot.mp3')
-      audio.play();
-      image.removeClass('mdl-image-hidden')
-      setTimeout(function() {
-        image.addClass('mdl-image-hidden')
-      }, 3000)
+  $('.mdl-victim-link').on('click', function(e) {
+    if (!victim_active) {
+      victim_active = true;
+      $('html, body').animate({
+        scrollTop: $("#" + e.currentTarget.id).offset().top + 50
+      }, 1000);
+      var image = $('#' + this.id + '_image')
+      if (image.is(':hidden')) {
+        var audio = new Audio('media/shot.mp3')
+        audio.play();
+        image.removeClass('mdl-image-hidden')
+        setTimeout(function() {
+          image.addClass('mdl-image-hidden')
+          victim_active = false;
+        }, 3000)
+      }
     }
   })
-
-
 
 })();
