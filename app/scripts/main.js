@@ -123,8 +123,6 @@
   }
 
   $('.mdl-victim-link').on('click', function(e) {
-    if (!victim_active) {
-      victim_active = true;
       $('html, body').animate({
         scrollTop: $("#" + e.currentTarget.id).offset().top + 50
       }, 1000);
@@ -135,10 +133,8 @@
         image.removeClass('mdl-image-hidden')
         setTimeout(function() {
           image.addClass('mdl-image-hidden')
-          victim_active = false;
         }, 3000)
       }
-    }
   })
 
 })();
