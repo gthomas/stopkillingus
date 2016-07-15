@@ -29,6 +29,10 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+#content {
+    padding: 0 0 175px 0;
+}
 .mdl-cell {
   margin: 3px;
 }
@@ -245,6 +249,32 @@ html, body {
 .highlight-link {
     color: white;
 }
+footer {
+    color: black;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a div {
+    margin-left: 10px;
+}
+.mdl-mini-footer {
+    background-color: transparent;
+}
+
 .victim-image-wrap {
     position: absolute;
     left: 0px;
@@ -263,4 +293,3 @@ html, body {
     background-size: auto 100%;
     background-position: center center;
 }
-

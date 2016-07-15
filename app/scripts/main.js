@@ -161,7 +161,6 @@
   };
 
   $('.mdl-victim-link').on('click', function(e) {
-
     var animateFinish,
         animateScroll,
         delayHandler,
