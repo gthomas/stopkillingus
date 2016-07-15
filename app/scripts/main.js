@@ -73,7 +73,15 @@
   }
 
   // Your custom JavaScript goes here
-  var names = [
+  var content,
+      copsAudio,
+      hasPlayed,
+      isMobile,
+      names,
+      shotAudio,
+      victim_active;
+
+  names = [
     "philando_castile",
     "alton_sterling",
     "freddie_gray",
@@ -103,16 +111,25 @@
     "rumain_brisbon",
   ];
 
-  var content = $("#content");
-  var victim_active = false;
+  content = $("#content");
+  copsAudio = new Audio('media/hands_up.mp3');
+  hasPlayed = false;
+  shotAudio = new Audio('media/shot.mp3');
+  victim_active = false;
+
   for (var i=0; i < names.length; i++) {
-    var name = names[i];
-    var name_html = '<span id='+name+' class="mdl-victim-link" data-image-visible="false">' +
+    var div_html,
+        image_html,
+        name,
+        name_html;
+
+    name = names[i];
+    name_html = '<span id=' + name + ' class="mdl-victim-link" data-image-visible="false">' +
           name.replace(/_/g, ' ') + '</span>';
 
-    var image_html = '<img class="victim-image" src="images/victims/' + name + '.jpg"></img>';
+    image_html = '<div class="victim-image" style="background-image: url(images/victims/' + name + '.jpg)"></div>';
 
-    var div_html = '<div class="mdl-grid">' +
+    div_html = '<div class="mdl-grid">' +
           '<div class="mdl-cell mdl-cell--1-col"></div>' +
           '<div class="mdl-cell mdl-cell--8-col">hands up, hands up, then the cops shot ' + name_html + '</div>' +
           '</div>' +
@@ -122,23 +139,87 @@
     content.append(div_html)
   }
 
+  isMobile = {
+    Android: function() {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+      return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+  };
+
   $('.mdl-victim-link').on('click', function(e) {
-    if (!victim_active) {
-      victim_active = true;
-      $('html, body').animate({
-        scrollTop: $("#" + e.currentTarget.id).offset().top + 50
-      }, 1000);
-      var image = $('#' + this.id + '_image')
+
+    var animateFinish,
+        animateScroll,
+        delayHandler,
+        image,
+        newScrollY,
+        playCount,
+        priorScrollY,
+        $target,
+        victim_active;
+
+    playCount = 0;
+    if (victim_active) {
+      return
+    }
+
+    image = $("#" + e.currentTarget.id + '_image')
+    victim_active = true;
+
+    $target = $(this);
+    $(this).addClass('highlight-link');
+
+    priorScrollY = window.scrollY;
+
+    if (($target.offset().top + 350) > window.innerHeight) {
+      newScrollY = image.offset().top + 450;
+    } else {
+      newScrollY = window.offsetTop;
+    }
+
+    animateFinish = function() {
       if (image.is(':hidden')) {
-        var audio = new Audio('media/shot.mp3')
-        audio.play();
+        shotAudio.play();
         image.removeClass('mdl-image-hidden')
-        setTimeout(function() {
-          image.addClass('mdl-image-hidden')
-          victim_active = false;
-        }, 3000)
+        setTimeout(delayHandler, 3000);
       }
     }
-  })
 
+    animateScroll = function(newScrollTop, animateCallback) {
+      $('html, body').animate({
+        scrollTop: newScrollTop
+      }, 100, 'swing', animateCallback)
+    }
+
+    delayHandler = function() {
+      if (!isMobile.any()) {
+        animateScroll(priorScrollY, function() {});
+      }
+
+      image.addClass('mdl-image-hidden')
+      $target.removeClass('highlight-link')
+      victim_active = false;
+    }
+
+    if (!isMobile.any()) {
+      animateScroll(newScrollY, animateFinish)
+    } else {
+      animateFinish();
+    }
+
+  })
 })();

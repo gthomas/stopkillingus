@@ -242,15 +242,25 @@ html, body {
     cursor: pointer;
 }
 
+.highlight-link {
+    color: white;
+}
 .victim-image-wrap {
     position: absolute;
-    left: 275px;
-    z-index: 999999;
+    left: 0px;
+    margin-top: -5px;
+    z-index: 99999;
+
+    @media (min-width: 800px) {
+        left: 460px;
+    }
 }
 
 .victim-image {
-    width: 50%;
-    height: 100%;
-    object-fit: contain;
+    margin: 0;
+    width: 350px;
+    height: 250px;
+    background-size: auto 100%;
+    background-position: center center;
 }
 
